@@ -4,11 +4,11 @@
 
 2. Clone this repo 
 
-    git clone https://github.com/ImpurestPath/vscode-trello.git
+        git clone https://github.com/ImpurestPath/vscode-trello.git
 
 3. Install node modules(in vscode-trello folder)
     
-    npm install
+        npm install
 
 4. Create new branch from **develop** 
 
