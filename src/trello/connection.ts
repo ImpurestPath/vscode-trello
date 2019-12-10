@@ -5,9 +5,9 @@ export class Connection{
 
     constructor(context?: vscode.ExtensionContext){}
 
-    async get(url: string, data: object): Promise<any> {
+    async get(url: string, params: object): Promise<any> {
         try {
-          const res = await axios.get(url, { data });
+          const res = await axios.get(url, { params });
           return res.data;
         } catch (error) {
           if (error.response) {
@@ -44,9 +44,9 @@ export class Connection{
         return null;
       }
     
-      async delete(url: string, data: object): Promise<any> {
+      async delete(url: string, params: object): Promise<any> {
         try {
-          const res = await axios.delete(url, { data });
+          const res = await axios.delete(url, { params });
           return res.data;
         } catch (error) {
           if (error.response) {
