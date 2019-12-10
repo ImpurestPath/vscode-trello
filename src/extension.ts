@@ -19,15 +19,15 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World!');
-		let c : Connection = new Connection();
+		// let c : Connection = new Connection();
 	
-		const key = vscode.workspace.getConfiguration().get('trello.key');
-		const token = vscode.workspace.getConfiguration().get('trello.token');
-		const abc = await c.get("https://api.trello.com/1/members/me/boards?",{
-			key: key,
-      		token: token,
-		});
-		console.log(abc);
+		// const key = vscode.workspace.getConfiguration().get('trello.key');
+		// const token = vscode.workspace.getConfiguration().get('trello.token');
+		// const abc = await c.get("https://api.trello.com/1/members/me/boards?",{
+		// 	key: key,
+      	// 	token: token,
+		// });
+		// console.log(abc);
 	});
 
 	context.subscriptions.push(disposable);
