@@ -77,35 +77,35 @@ export class Connection{
       }
 
       static getBoard(id: string): Promise<IBoard> {
-        return Connection.get("https://api.trello.com/1/board/${id}",{
+        return Connection.get(`https://api.trello.com/1/board/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getList(id: string): Promise<IList> {
-        return Connection.get("https://api.trello.com/1/list/${id}",{
+        return Connection.get(`https://api.trello.com/1/list/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getListsByBoard(id: string): Promise<IList[]> {
-        return Connection.get("https://api.trello.com/1/board/${id}/lists",{
+        return Connection.get(`https://api.trello.com/1/board/${id}/lists`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getCard(id: string): Promise<ICard> {
-        return Connection.get("https://api.trello.com/1/card/${id}",{
+        return Connection.get(`https://api.trello.com/1/card/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getCardsByList(id: string): Promise<ICard[]> {
-        return Connection.get("https://api.trello.com/1/list/${id}",{
+        return Connection.get(`https://api.trello.com/1/list/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
