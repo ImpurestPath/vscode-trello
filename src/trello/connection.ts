@@ -1,6 +1,8 @@
 import * as vscode from "vscode";
 import axios from "axios";
 import { IBoard, IList, ICard } from "./entities";
+import FormData = require("form-data");
+
 
 export class Connection{
 
@@ -36,6 +38,8 @@ export class Connection{
         } catch (error) {
           if (error.response) {
             console.error("POST error", error.response);
+            console.error("POST error", error.response.data);
+
             vscode.window.showErrorMessage(`HTTP error: ${error.response.status} - ${error.response.data}`);
           }
         }
@@ -77,35 +81,35 @@ export class Connection{
       }
 
       static getBoard(id: string): Promise<IBoard> {
-        return Connection.get("https://api.trello.com/1/board/${id}",{
+        return Connection.get(`https://api.trello.com/1/board/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getList(id: string): Promise<IList> {
-        return Connection.get("https://api.trello.com/1/list/${id}",{
+        return Connection.get(`https://api.trello.com/1/list/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getListsByBoard(id: string): Promise<IList[]> {
-        return Connection.get("https://api.trello.com/1/board/${id}/lists",{
+        return Connection.get(`https://api.trello.com/1/board/${id}/lists`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getCard(id: string): Promise<ICard> {
-        return Connection.get("https://api.trello.com/1/card/${id}",{
+        return Connection.get(`https://api.trello.com/1/card/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
       }
 
       static getCardsByList(id: string): Promise<ICard[]> {
-        return Connection.get("https://api.trello.com/1/list/${id}",{
+        return Connection.get(`https://api.trello.com/1/list/${id}`,{
           key:  this.getKey(),
           token: this.getToken(),
         });
@@ -196,4 +200,12 @@ export class Connection{
         });
       }
 
+      static attachFile(idCard: string, url ?: string,  file?: FormData) : Promise<any>{
+        return Connection.post(`https://api.trello.com/1/card/${idCard}/attachments`, {
+          key: this.getKey(),
+          token: this.getToken(),
+          file: file,
+          url: url,
+        });
+      }
 }

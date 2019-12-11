@@ -23,23 +23,17 @@
 		"configuration": {
 			"title": "Trello",
 			"properties": {
-			  "trello.key": {
-				"type": "string",
-				"description": "API key for your account"
-			  },
-			  "trello.token": {
-				"type": "string",
-				"description": "API token for your account"
-			  }
+				"trello.key": {
+					"type": "string",
+					"description": "API key for your account"
+				},
+				"trello.token": {
+					"type": "string",
+					"description": "API token for your account"
+				}
 			}
-		  }
+		}
 	},
-
-
-		  
-
-
-
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
@@ -59,6 +53,7 @@
 		"vscode-test": "^1.2.2"
 	},
 	"dependencies": {
-		"axios": "^0.19.0"
+		"axios": "^0.19.0",
+		"form-data": "^3.0.0"
 	}
 }

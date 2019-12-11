@@ -5,6 +5,9 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { Connection } from "../../trello/connection";
 import { IBoard } from '../../trello/entities';
+import FormData = require('form-data');
+import fs = require('fs');
+import * as path from 'path';
 // import * as myExtension from '../extension';
 
 suite('Extension Test Suite', () => {
@@ -25,5 +28,12 @@ suite('Extension Test Suite', () => {
 	});
 	test('Get entity', async () => {
 		await Connection.getAllUserBoards().then(boards => {console.log(boards as IBoard[]);});
+	});
+
+	test('Post image', async () => {
+	
+		// const file = new FormData();
+		// file.append('file',fs.readFileSync(path.join(__dirname, '/../../../IMG.jpg')));
+		await Connection.attachFile("5df11e2b2db0465a622d9152",'https://i.imgur.com/wJayrej.jpg').then(r => console.log(r)).catch(r => console.log(r));
 	});
 });
