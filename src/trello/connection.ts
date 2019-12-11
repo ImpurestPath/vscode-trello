@@ -116,8 +116,8 @@ export class Connection{
           name: card.name,
           desc: card.desc,
           idList: card.idList,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
@@ -125,8 +125,8 @@ export class Connection{
         return Connection.post("https://api.trello.com/1/list", {
           name: list.name,
           idBoard: list.idBoard,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
@@ -134,8 +134,8 @@ export class Connection{
         return Connection.post("https://api.trello.com/1/board", {
           name: board.name,
           desc: board.desc,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
@@ -146,8 +146,8 @@ export class Connection{
           name: card.name,
           desc: card.desc,
           idList: card.idList,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
@@ -156,8 +156,8 @@ export class Connection{
           id: list.id,
           name: list.name,
           idBoard: list.idBoard,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
@@ -166,8 +166,8 @@ export class Connection{
           id: board.id,
           name: board.name,
           desc: board.desc,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
@@ -175,24 +175,25 @@ export class Connection{
       static deleteCard(card: ICard) : Promise<any> {
         return Connection.delete("https://api.trello.com/1/card", {
           id: card.id,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
       static deleteList(list: IList) : Promise<any> {
         return Connection.delete("https://api.trello.com/1/list", {
           id: list.id,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
 
       static deleteBoard(board: IBoard) : Promise<any> {
         return Connection.delete("https://api.trello.com/1/board", {
           id: board.id,
-          key: this.getKey,
-          token: this.getToken,
+          key: this.getKey(),
+          token: this.getToken(),
         });
       }
+
 }
