@@ -26,4 +26,22 @@ suite('Extension Test Suite', () => {
 	test('Get entity', async () => {
 		await Connection.getAllUserBoards().then(boards => {console.log(boards as IBoard[]);});
 	});
+
+// 	test('Post comment',async ()=> {
+		
+// 		const id = "5df11e2b2db0465a622d9152";
+// 		const text = `
+// \`\`\`
+		
+// 	test('Post image', async () => {
+	
+// 				//  const file = new FormData();
+// 	//  file.append('file',fs.readFileSync(path.join(__dirname, '/../../../IMG.jpg')));
+// 		await Connection.attachFile("5df11e2b2db0465a622d9152",'https://i.imgur.com/wJayrej.jpg').then(r => console.log(r)).catch(r => console.log(r));
+// 	});
+
+// \`\`\`
+// 		`;
+// 		await Connection.addCommentToCard(id,text);
+	});
 });

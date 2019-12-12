@@ -196,4 +196,11 @@ export class Connection{
         });
       }
 
+      static addCommentToCard(idCard: string, text: string) : Promise<any>{
+        return Connection.post(`https://api.trello.com/1/cards/${idCard}/actions/comments`, {
+          text: text,
+          key: this.getKey(),
+          token: this.getToken()
+        });
+      }
 }
