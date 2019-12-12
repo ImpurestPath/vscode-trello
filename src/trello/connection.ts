@@ -200,12 +200,28 @@ export class Connection{
         });
       }
 
-      static attachFile(idCard: string, url ?: string,  file?: FormData) : Promise<any>{
-        return Connection.post(`https://api.trello.com/1/card/${idCard}/attachments`, {
-          key: this.getKey(),
-          token: this.getToken(),
-          file: file,
-          url: url,
-        });
+      static attachFile(idCard: string, name: string, url ?: string,  file?: any) : any{
+        if (url){
+          return Connection.post(`https://api.trello.com/1/card/${idCard}/attachments`, {
+            key: this.getKey(),
+            token: this.getToken(),
+            name: name,
+            url: url,
+          });
+        }
+        else if (file){
+          var form = new FormData();
+          form.append("file", file);
+          form.append("name", name);
+          form.append("key",'6e0a164b0bb96842b6bd837fb8b4f9d0');
+          form.append("token",'415b41b03f66b8ad535de5dcc96ed74550aca05d8f9f091e31b0252d6f7f5979');
+          //form.append("mimeType", "image/jpg");
+          form.submit(`https://api.trello.com/1/cards/${idCard}/attachments`, function(err, res) {
+            // res – response object (http.IncomingMessage)  //
+            res.resume();
+          });
+        }
       }
+
+
 }

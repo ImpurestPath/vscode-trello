@@ -8,6 +8,7 @@ import { IBoard } from '../../trello/entities';
 import FormData = require('form-data');
 import fs = require('fs');
 import * as path from 'path';
+
 // import * as myExtension from '../extension';
 
 suite('Extension Test Suite', () => {
@@ -22,7 +23,7 @@ suite('Extension Test Suite', () => {
         const token = vscode.workspace.getConfiguration().get('trello.token');
 		const abc = await Connection.get("https://api.trello.com/1/members/me/boards?",{
 			key: key,
-      		token: token,
+			token: token,
 		});
 		console.log(abc);
 	});
@@ -30,10 +31,22 @@ suite('Extension Test Suite', () => {
 		await Connection.getAllUserBoards().then(boards => {console.log(boards as IBoard[]);});
 	});
 
-	test('Post image', async () => {
+
+	// test('Post url image', async () => {
 	
-		// const file = new FormData();
-		// file.append('file',fs.readFileSync(path.join(__dirname, '/../../../IMG.jpg')));
-		await Connection.attachFile("5df11e2b2db0465a622d9152",'https://i.imgur.com/wJayrej.jpg').then(r => console.log(r)).catch(r => console.log(r));
-	});
+	// 	const file = new FormData();
+	// 	file.append('file',fs.readFileSync(path.join(__dirname, '/../../../IMG.jpg')));
+	// 	await Connection.attachFile("5df11e2b2db0465a622d9152",'https://i.imgur.com/wJayrej.jpg').then(r => console.log(r)).catch(r => console.log(r));
+	// });
+		
+	// test('Post file image', async () => {
+	// 	const fs = require("fs");
+	// 	const path = require("path");
+	// 	const id = "5df11e2b2db0465a622d9152";
+	// 	const f = fs.createReadStream(path.join(__dirname, '/../../../IMG.jpg'));
+	// 	Connection.attachFile(id,"Good image",'',f);
+	// });
+	
+
 });
+
