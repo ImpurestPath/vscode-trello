@@ -26,4 +26,35 @@ suite('Extension Test Suite', () => {
 	test('Get entity', async () => {
 		await Connection.getAllUserBoards().then(boards => {console.log(boards as IBoard[]);});
 	});
+
+	test('Post comment',async ()=> {
+		const key = vscode.workspace.getConfiguration().get('trello.key');
+		const token = vscode.workspace.getConfiguration().get('trello.token');
+		const id = "5df11e2b2db0465a622d9152";
+		var request = require("request");
+
+		var options = {
+		method: 'POST',
+		url: `https://api.trello.com/1/cards/${id}/actions/comments`,
+		qs: {text: `
+\`\`\`
+		
+	test('Post image', async () => {
+	
+				//  const file = new FormData();
+	//  file.append('file',fs.readFileSync(path.join(__dirname, '/../../../IMG.jpg')));
+		await Connection.attachFile("5df11e2b2db0465a622d9152",'https://i.imgur.com/wJayrej.jpg').then(r => console.log(r)).catch(r => console.log(r));
+	});
+
+\`\`\`
+		`, key: key, token: token}
+		};
+
+		request(options, function (error:any, response:any, body:any) {
+		if (error) {
+			throw new Error(error);
+		}
+		console.log(body);
+		});
+	});
 });
