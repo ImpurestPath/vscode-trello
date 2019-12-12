@@ -4,7 +4,7 @@ import * as assert from 'assert';
 // as well as import your extension to test it
 import * as vscode from 'vscode';
 import { Connection } from "../../trello/connection";
-import { IBoard } from '../../trello/entities';
+import { IBoard, ICard, IList } from '../../trello/entities';
 // import * as myExtension from '../extension';
 
 suite('Extension Test Suite', () => {
@@ -24,6 +24,8 @@ suite('Extension Test Suite', () => {
 		console.log(abc);
 	});
 	test('Get entity', async () => {
-		await Connection.getAllUserBoards().then(boards => {console.log(boards as IBoard[]);});
+		await Connection.getAllUserBoards().then(boards => {
+			console.log(boards as IBoard[]);
+		});
 	});
 });

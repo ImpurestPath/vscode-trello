@@ -105,9 +105,14 @@ export class Connection{
       }
 
       static getCardsByList(id: string): Promise<ICard[]> {
-        return Connection.get(`https://api.trello.com/1/list/${id}`,{
+        // return Connection.get(`https://api.trello.com/1/list/${id}`,{
+        return Connection.get(`https://api.trello.com/1/lists/${id}/cards`,{
           key:  this.getKey(),
           token: this.getToken(),
+          // attachments: "cover",
+          // actions: "commentCard",
+          // actions_limit: 20,
+          // members: true,
         });
       }
 

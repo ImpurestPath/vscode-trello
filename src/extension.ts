@@ -2,6 +2,11 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import {Connection} from "./trello/connection";
+import { TrelloTreeView } from "./trello/trello-viewer/TrelloTreeView";
+// import { TrelloViewFavoriteList } from "./trello/trello-viewer/TrelloViewFavoriteList";
+import { TrelloUtils, removeTempTrelloFile } from "./trello/trello-viewer/TrelloUtils";
+import { TrelloCard } from "./trello/trello-viewer/trelloComponents";
+import { TrelloItem } from "./trello/trello-viewer/TrelloItem";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -29,8 +34,35 @@ export function activate(context: vscode.ExtensionContext) {
 		// });
 		// console.log(abc);
 	});
-
-	context.subscriptions.push(disposable);
+	const trello = new TrelloUtils(context);
+	const trelloTreeView = new TrelloTreeView(trello);
+ 	// const trelloViewFavoriteList = new TrelloViewFavoriteList(trello);
+	// Tree views
+	vscode.window.registerTreeDataProvider("trelloTreeView", trelloTreeView);
+	// Refresh
+	vscode.commands.registerCommand("trelloViewer.refresh", () => trelloTreeView.refresh());
+	vscode.commands.registerCommand("trelloViewer.addCard", (list: TrelloItem) => trello.addCardToList(list));
+	// Card Actions - edit
+	// vscode.commands.registerCommand("trelloViewer.editCardTitle", (card: TrelloItem) => trello.editTitle(card));
+	// vscode.commands.registerCommand("trelloViewer.editCardDescription", (card: TrelloItem) =>
+	//   trello.editDescription(card)
+	// );
+	vscode.commands.registerCommand("trelloViewer.addScreenCode", (card: TrelloItem) => trello.addScreenCode(card));
+	// vscode.commands.registerCommand("trelloViewer.addComment", (card: TrelloItem) => trello.addComment(card));
+	// Card Actions - user
+	// vscode.commands.registerCommand("trelloViewer.addSelfToCard", (card: TrelloItem) => trello.addSelfToCard(card));
+	// vscode.commands.registerCommand("trelloViewer.removeSelfFromCard", (card: TrelloItem) =>
+	//   trello.removeSelfFromCard(card)
+	// );
+	// vscode.commands.registerCommand("trelloViewer.addUserToCard", (card: TrelloItem) => trello.addUserToCard(card));
+	// vscode.commands.registerCommand("trelloViewer.removeUserFromCard", (card: TrelloItem) =>
+	//   trello.removeUserFromCard(card)
+	// );
+	// Card Actions - card
+	// vscode.commands.registerCommand("trelloViewer.moveCardToList", (card: TrelloItem) => trello.moveCardToList(card));
+	// vscode.commands.registerCommand("trelloViewer.archiveCard", (card: TrelloItem) => trello.archiveCard(card));
+	// Card - Show using markdown preview
+	vscode.commands.registerCommand("trelloViewer.showCard", (card: TrelloCard) => trello.showCard(card));
 }
 
 // this method is called when your extension is deactivated

@@ -10,36 +10,102 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"*"
 	],
 	"main": "./out/extension.js",
+	"icon": "images/trello-viewer-icon.png",
 	"contributes": {
 		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			}
+			  {
+				"command": "trelloViewer.refresh",
+				"title": "Refresh",
+				"category": "Trello Viewer",
+				"icon": {
+				  "light": "images/light/sync.svg",
+				  "dark": "images/dark/sync.svg"
+				}
+			  },
+			  {
+				"command": "trelloViewer.addCard",
+				"title": "Add Card",
+				"category": "Trello Viewer List Action",
+				"icon": {
+				  "light": "images/light/plus.svg",
+				  "dark": "images/dark/plus.svg"
+				}
+			  },
+			  {
+				"command": "trelloViewer.addScreenCode",
+				"title": "Add ScreenCode",
+				"category": "Trello Viewer Card Action"
+			  }
 		],
 		"configuration": {
 			"title": "Trello",
 			"properties": {
-			  "trello.key": {
-				"type": "string",
-				"description": "API key for your account"
+			  "trelloViewer.viewColumn": {
+				"type": "integer",
+				"default": 2,
+				"description": "Specifies which editor column markdown previewer opens at.\n-1 = Active, -2 = Beside, 1 = One, 2 = Two, etc.",
+				"scope": "resource"
 			  },
-			  "trello.token": {
-				"type": "string",
-				"description": "API token for your account"
+			  "trelloViewer.starredBoardsOnly": {
+				"type": "boolean",
+				"default": false,
+				"description": "Controls whether to display starred boards only or all boards.",
+				"scope": "resource"
 			  }
 			}
+		  },
+		  "menus": {
+			"commandPalette": [
+			  {
+				"command": "trelloViewer.addCard",
+				"when": "false"
+			  },
+			  {
+				"command": "trelloViewer.addScreenCode",
+				"when": "false"
+			  }
+			],
+			"view/title": [
+			  {
+				"command": "trelloViewer.refresh",
+				"when": "view == trelloTreeView",
+				"group": "navigation@4"
+			  }
+			],
+			"view/item/context": [
+			  {
+				"command": "trelloViewer.addCard",
+				"when": "viewItem == list",
+				"group": "inline@1"
+			  },
+			  {
+				"command": "trelloViewer.addScreenCode",
+				"when": "viewItem == card",
+				"group": "1edit@3"
+			  }
+			]
+		  },
+		  "viewsContainers": {
+			"activitybar": [
+			  {
+				"id": "trelloViewer",
+				"title": "Trello Viewer",
+				"icon": "images/trello-viewer-activity-bar.svg"
+			  }
+			]
+		  },
+		  "views": {
+			"trelloViewer": [
+			  {
+				"id": "trelloTreeView",
+				"name": "Trello Boards"
+			  }
+			]
 		  }
-	},
-
-
-		  
-
-
-
+		},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
