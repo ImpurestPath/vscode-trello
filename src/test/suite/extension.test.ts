@@ -32,6 +32,7 @@ suite('Extension Test Suite', () => {
 	});
 
 
+
 	// test('Post url image', async () => {
 	
 	// 	const file = new FormData();
@@ -47,6 +48,7 @@ suite('Extension Test Suite', () => {
 	// 	Connection.attachFile(id,"Good image",'',f);
 	// });
 	
+
 
 });
 
