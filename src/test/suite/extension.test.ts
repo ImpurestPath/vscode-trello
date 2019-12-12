@@ -28,15 +28,9 @@ suite('Extension Test Suite', () => {
 	});
 
 	test('Post comment',async ()=> {
-		const key = vscode.workspace.getConfiguration().get('trello.key');
-		const token = vscode.workspace.getConfiguration().get('trello.token');
+		
 		const id = "5df11e2b2db0465a622d9152";
-		var request = require("request");
-
-		var options = {
-		method: 'POST',
-		url: `https://api.trello.com/1/cards/${id}/actions/comments`,
-		qs: {text: `
+		const text = `
 \`\`\`
 		
 	test('Post image', async () => {
@@ -47,14 +41,7 @@ suite('Extension Test Suite', () => {
 	});
 
 \`\`\`
-		`, key: key, token: token}
-		};
-
-		request(options, function (error:any, response:any, body:any) {
-		if (error) {
-			throw new Error(error);
-		}
-		console.log(body);
-		});
+		`;
+		await Connection.addCommentToCard(id,text);
 	});
 });
