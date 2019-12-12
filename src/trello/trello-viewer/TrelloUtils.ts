@@ -21,6 +21,7 @@ import {
   SETTING_CONFIG,
   GLOBALSTATE_CONFIG,
 } from "./constants";
+import { Connection } from "../connection";
 
 export class TrelloUtils {
   private globalState: any;
@@ -303,6 +304,12 @@ export class TrelloUtils {
 
   async addScreenCode(card: TrelloItem): Promise<Number> {
     // screen code command
+    // Connection.attachFile();
+    const fs = require("fs");
+		const path = require("path");
+		const id = card.id;
+		const f = fs.createReadStream(path.join(__dirname, '/Users/emidiant/Desktop/ITMO/5 семестр/Инструментальные средства разработки ПО/trello/vscode-trello/images/screen1.png'));
+		Connection.attachFile(id,"Good image",'',f);
     console.log('addScreenCode');
     return 0;
   }
