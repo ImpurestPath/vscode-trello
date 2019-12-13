@@ -6,6 +6,11 @@
 	"engines": {
 		"vscode": "^1.40.0"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ImpurestPath/vscode-trello.git"
+	},
+	"icon": "icon.png",
 	"categories": [
 		"Other"
 	],
@@ -18,18 +23,50 @@
 			{
 				"command": "extension.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "screenshot.activate",
+				"title": "Screenshot 📸"
 			}
 		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "screenshot.activate"
+				}
+			]
+		},
 		"configuration": {
-			"title": "Trello",
+			"title": "Screenshot",
 			"properties": {
-				"trello.key": {
+				"screenshot.shadow": {
 					"type": "string",
-					"description": "API key for your account"
+					"description": "Shadow of the snippet node. Use any value for CSS `box-shadow`",
+					"default": "rgba(0, 0, 0, 0.55) 0px 20px 68px"
 				},
-				"trello.token": {
+				"screenshot.transparentBackground": {
+					"type": "boolean",
+					"description": "Transparent background for containers",
+					"default": false
+				},
+				"screenshot.backgroundColor": {
 					"type": "string",
-					"description": "API token for your account"
+					"description": "Background color of snippet container. Use any value for CSS `background-color`",
+					"format": "color-hex",
+					"default": "#f2f2f2"
+				},
+				"screenshot.target": {
+					"type": "string",
+					"description": "Shoot with or without container",
+					"default": "container",
+					"enum": [
+						"container",
+						"snippet"
+					],
+					"enumDescriptions": [
+						"Shoot with the container.",
+						"Shoot with the snippet alone. If you want transparent padding, use `container` with `\"screenshot.transparentBackground\": true`"
+					]
 				}
 			}
 		}
@@ -53,9 +90,6 @@
 		"vscode-test": "^1.2.2"
 	},
 	"dependencies": {
-		"axios": "^0.19.0",
-		"form-data": "^3.0.0",
-		"request": "^2.88.0"
-
+		"axios": "^0.19.0"
 	}
 }
