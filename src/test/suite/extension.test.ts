@@ -8,6 +8,7 @@ import { IBoard } from '../../trello/entities';
 import FormData = require('form-data');
 import fs = require('fs');
 import * as path from 'path';
+import { sendCode } from '../../trello/utils';
 
 // import * as myExtension from '../extension';
 
@@ -29,6 +30,9 @@ suite('Extension Test Suite', () => {
 	});
 	test('Get entity', async () => {
 		await Connection.getAllUserBoards().then(boards => {console.log(boards as IBoard[]);});
+	});
+	test('test', async ()=>{
+		await sendCode();
 	});
 
 
